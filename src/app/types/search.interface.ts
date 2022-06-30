@@ -1,0 +1,1 @@
+export interface BreedInterface {  description: string,  name: string,  id: string  image: {    height: number    id: string    url: string    width: number  }}

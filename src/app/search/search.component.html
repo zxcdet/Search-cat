@@ -1,1 +1,56 @@
-<p>search works!</p>
+<div *ngIf="!isLoading">
+  <div class="container">
+    <form>
+      <div class="flex">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Breed</mat-label>
+          <input matInput [formControl]="breedInput">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Select breed</mat-label>
+          <mat-select [formControl]="selectBreed">
+            <mat-option *ngFor="let select of selectList" [value]="select">
+              {{select}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </form>
+
+  </div>
+  <div class="row">
+    <div *ngFor="let item of searchList | search: searchStr: breedLenght
+| paginate: { itemsPerPage: itemPage,currentPage: page,
+     totalItems:breedLenght}
+" class="items">
+      <mat-card class="mat-card">
+        <mat-card-title>
+          <img mat-card-image src="{{item?.image?.url}}" alt="" class="card-img">
+        </mat-card-title>
+        <mat-card-subtitle>
+          <h2
+            appHighlight
+            [searchedWords]="searchStr"
+            [objectType]="'name'"
+            [text]="item"
+          >{{item.name}}</h2>
+          <p
+            appHighlight
+            [searchedWords]="searchStr"
+            [objectType]="'description'"
+            [text]="item"
+          >{{item.description}}</p>
+        </mat-card-subtitle>
+      </mat-card>
+    </div>
+  </div>
+  <ng-container>
+    <pagination-controls
+      (pageChange)="page = $event"
+      (pageBoundsCorrection)="page = $event"
+      class="pagination"></pagination-controls>
+  </ng-container>
+</div>
+<ng-container *ngIf="isLoading">
+  <mat-spinner class="mat-spinner"></mat-spinner>
+</ng-container>

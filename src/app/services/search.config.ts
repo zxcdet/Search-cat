@@ -1,0 +1,1 @@
+export const BASE_URL = "https://api.thecatapi.com/v1/images/search?breed_ids";export const BASE_URL_ID = "https://api.thecatapi.com/v1/images/search?breed_ids";export const BASE_URL_BREED = "https://api.thecatapi.com/v1/breeds"
