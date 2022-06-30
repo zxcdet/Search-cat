@@ -59,7 +59,6 @@ export class SearchComponent implements OnInit, OnDestroy {
      takeUntil(this.destroy$)
    ).subscribe((value) => {
      this.itemPage = value;
-     this.breedLenght = this.searchList.length;
    });
   };
 
